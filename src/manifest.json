@@ -1,0 +1,23 @@
+{
+  "name": "TabArtStation",
+  "version": "0.1",
+  "description": "Display image in daily rss for artstation.com",
+  "permissions": [
+    "activeTab",
+    "https://www.artstation.com/",
+    "downloads"
+  ],
+  "browser_action": {
+      "default_title": "TabArtStation",
+      "default_icon": "art_station_icon.png",
+      "default_popup": "popup.html"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "background": {
+    "scripts": ["popup.js"]
+  },
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
