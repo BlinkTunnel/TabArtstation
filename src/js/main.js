@@ -15,8 +15,35 @@ jQuery.browser = {};
 
 (function(){
     var rssURL = "https://www.artstation.com/artwork.rss";
+    var indexKey = "viewedIndex";
+
     var feedGlobal;
     var currentBg;
+
+    var IndexManager = {
+      get: function(){
+        var result = parseInt(
+          localStorage.getItem(indexKey)
+        );
+        if (isNaN(result)){
+          return 0
+        }else{
+          return result
+        }
+      },
+      set: function(index){
+        localStorage.setItem(
+          indexKey,
+          index
+        );
+      },
+      reset: function(){
+        localStorage.setItem(
+          indexKey,
+          0
+        );
+      }
+    };
 
     function setBg(imgURL){
       var ele = jQuery("#wallpaper").eq(0);
@@ -42,10 +69,24 @@ jQuery.browser = {};
       return Math.floor((Math.random() * max));
     }
 
-    function randomBg(items){
-      var itemIndex = randomIntFromZero(items.length);
+    function getBg(items, goNext){
+      var itemIndex = IndexManager.get();
+
+      if (goNext == undefined){
+        goNext = false;
+      }
+      if (goNext){
+        itemIndex = itemIndex + 1;
+      }
+      if (itemIndex >= items.length){
+        itemIndex = 0;
+      }
+
+      IndexManager.set(itemIndex);
+
       var item = items[itemIndex];
       var images = item.images;
+
       return {
         item: item,
         image:images[randomIntFromZero(images.length)]
@@ -77,8 +118,8 @@ jQuery.browser = {};
       }
     };
 
-    function handleFeeds(feed){
-      var bgObject = randomBg(feed.items);
+    function handleFeeds(feed, goNext){
+      var bgObject = getBg(feed.items, goNext);
       var item = bgObject.item;
       setBg(bgObject.image);
       setLink(item.link);
@@ -91,13 +132,14 @@ jQuery.browser = {};
       for (var i=0; i < feed.items.length; i++){
         parseImageUrl(feed.items[i]);
       }
-      handleFeeds(feed);
+      IndexManager.reset();
       Store.save(feed);
       feedGlobal = feed;
+      handleFeeds(feed, false);
     }
 
     function refresh(){
-        handleFeeds(feedGlobal);
+        handleFeeds(feedGlobal, true);
         var ele = jQuery("#random").eq(0);
         if (ele.hasClass("active")){
           ele.removeClass("active");
@@ -132,7 +174,7 @@ jQuery.browser = {};
         });
       }else{
         feedGlobal = Store.load();
-        handleFeeds(feedGlobal);
+        handleFeeds(feedGlobal, false);
       }
       bindRefreshEvent();
       bindDownloadEvent();

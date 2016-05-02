@@ -9,3 +9,8 @@ Chrome extension to view latest artworks on `artstation.com` by its daily rss fe
 
 Enjoy:)
 
+## Change Log
+
++ 16.05.02: Use sequential index instead of the random index in rss items.
+
+
