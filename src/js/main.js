@@ -95,7 +95,7 @@ jQuery.browser = {};
 
     function parseImageUrl(item) {
       var content = jQuery(item._element).find("encoded").eq(0);
-      var html = jQuery.parseHTML(content.text());
+      var html = jQuery.parseHTML(content.context.innerHTML);
       var images = $(html).find("img").not(".emoji");
       item.images = [];
       for (var i = 0;i < images.length; i++){
@@ -151,6 +151,21 @@ jQuery.browser = {};
     function download() {
       window.open(currentBg.image);
     }
+    
+    function bindEvents() {
+      bindRefreshEvent();
+      bindDownloadEvent();
+      bindForceReload();
+    }
+    
+    function forceReload(){
+      jQuery.getFeed({
+          url: rssURL,
+          success: onSuccess
+      });
+      bindEvents();
+      console.log("Feeds force-reloaded.");
+    }
 
     function bindRefreshEvent(){
       jQuery("#random").bind(
@@ -165,6 +180,13 @@ jQuery.browser = {};
         download
       )
     }
+    
+    function bindForceReload(){
+      jQuery("#force-reload").bind(
+        "click",
+        forceReload
+      )
+    }
 
     function init(){
       if (!Store.isNotExpired()){
@@ -176,8 +198,7 @@ jQuery.browser = {};
         feedGlobal = Store.load();
         handleFeeds(feedGlobal, false);
       }
-      bindRefreshEvent();
-      bindDownloadEvent();
+      bindEvents();
     }
 
     init();
