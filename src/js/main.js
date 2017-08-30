@@ -175,7 +175,7 @@ jQuery.browser = {};
     }
 
     function bindDownloadEvent(){
-      jQuery(".save-wrapper").bind(
+      jQuery("#save").bind(
         "click",
         download
       )
