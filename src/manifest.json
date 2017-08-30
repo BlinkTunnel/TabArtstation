@@ -1,6 +1,6 @@
 {
   "name": "TabArtStation",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Display image in daily rss for artstation.com",
   "permissions": [
     "activeTab",
