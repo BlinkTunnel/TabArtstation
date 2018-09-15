@@ -94,8 +94,9 @@ jQuery.browser = {};
     }
 
     function parseImageUrl(item) {
-      var content = jQuery(item._element).find("encoded").eq(0);
-      var html = jQuery.parseHTML(content.context.innerHTML);
+      var content = jQuery(item._element).find("content\\:encoded").eq(0);
+      content = content[0];
+      var html = jQuery.parseHTML(content.innerHTML);
       var images = $(html).find("img").not(".emoji");
       item.images = [];
       for (var i = 0;i < images.length; i++){
