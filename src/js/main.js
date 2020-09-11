@@ -139,6 +139,13 @@ jQuery.browser = {};
       handleFeeds(feed, false);
     }
 
+    function getFeed() {
+      jQuery.getFeed({
+        url: rssURL,
+        success: onSuccess
+      });
+    }
+
     function refresh(){
         handleFeeds(feedGlobal, true);
         var ele = jQuery("#random").eq(0);
@@ -160,10 +167,7 @@ jQuery.browser = {};
     }
 
     function forceReload(){
-      jQuery.getFeed({
-          url: rssURL,
-          success: onSuccess
-      });
+      getFeed()
       bindEvents();
       console.log("Feeds force-reloaded.");
     }
@@ -191,10 +195,7 @@ jQuery.browser = {};
 
     function init(){
       if (!Store.isNotExpired()){
-        jQuery.getFeed({
-            url: rssURL,
-            success: onSuccess
-        });
+        getFeed()
       }else{
         feedGlobal = Store.load();
         handleFeeds(feedGlobal, false);
