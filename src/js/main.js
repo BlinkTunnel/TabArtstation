@@ -139,9 +139,26 @@ jQuery.browser = {};
       handleFeeds(feed, false);
     }
 
+    var SortingStorage = {
+      get: function() {
+        return localStorage.getItem("sorting") || "none";
+      },
+      set: function(value) {
+        localStorage.setItem("sorting", value);
+      },
+      reset: function() {
+        localStorage.setItem("sorting", "none");
+      }
+    };
+
     function getFeed() {
+      var url = rssURL;
+      var sorting = SortingStorage.get();
+      if (sorting !== "none") {
+        url += `?sorting=${sorting}`
+      }
       jQuery.getFeed({
-        url: rssURL,
+        url: url,
         success: onSuccess
       });
     }
@@ -164,12 +181,19 @@ jQuery.browser = {};
       bindRefreshEvent();
       bindDownloadEvent();
       bindForceReload();
+      bindSorting();
     }
 
     function forceReload(){
       getFeed()
       bindEvents();
       console.log("Feeds force-reloaded.");
+    }
+
+    function updateSorting(e) {
+      SortingStorage.set(jQuery("#sorting").val());
+      getFeed(); // Reload feed after sorting parameter change
+      console.log("Soring parameter changed.");
     }
 
     function bindRefreshEvent(){
@@ -193,6 +217,13 @@ jQuery.browser = {};
       )
     }
 
+    function bindSorting() {
+      jQuery("#sorting").bind(
+        "change",
+        updateSorting
+      )
+    }
+
     function init(){
       if (!Store.isNotExpired()){
         getFeed()
@@ -200,6 +231,7 @@ jQuery.browser = {};
         feedGlobal = Store.load();
         handleFeeds(feedGlobal, false);
       }
+      jQuery("#sorting").val(SortingStorage.get());
       bindEvents();
     }
 
