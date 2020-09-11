@@ -152,13 +152,13 @@ jQuery.browser = {};
     function download() {
       window.open(currentBg.image);
     }
-    
+
     function bindEvents() {
       bindRefreshEvent();
       bindDownloadEvent();
       bindForceReload();
     }
-    
+
     function forceReload(){
       jQuery.getFeed({
           url: rssURL,
@@ -181,7 +181,7 @@ jQuery.browser = {};
         download
       )
     }
-    
+
     function bindForceReload(){
       jQuery("#force-reload").bind(
         "click",
