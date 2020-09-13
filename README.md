@@ -6,6 +6,7 @@ Chrome/Firefox extension to view latest artworks on `artstation.com` by its dail
 ## Quick Start
 
 + Install it from [Chrome Web Store](https://chrome.google.com/webstore/detail/tabartstation/emaecifjhbeeklconpljfnhhdkpedbgi)
++ Install it from [Firefox Store](https://addons.mozilla.org/en-US/firefox/addon/tabartstation/)
 
 Enjoy:)
 
