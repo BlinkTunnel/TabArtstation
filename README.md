@@ -16,7 +16,7 @@ Enjoy:)
 
 
 ## Change Log
-
++ 20.09.13: Category support by [Mads Marquart](https://github.com/madsmtmhttps://github.com/madsmtm)
 + 16.05.02: Use sequential index instead of the random index in rss items.
 
 
