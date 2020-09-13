@@ -139,6 +139,30 @@ jQuery.browser = {};
       handleFeeds(feed, false);
     }
 
+    var SortingStorage = {
+      get: function() {
+        return localStorage.getItem("sorting") || "none";
+      },
+      set: function(value) {
+        localStorage.setItem("sorting", value);
+      },
+      reset: function() {
+        localStorage.setItem("sorting", "none");
+      }
+    };
+
+    function getFeed() {
+      var url = rssURL;
+      var sorting = SortingStorage.get();
+      if (sorting !== "none") {
+        url += `?sorting=${sorting}`
+      }
+      jQuery.getFeed({
+        url: url,
+        success: onSuccess
+      });
+    }
+
     function refresh(){
         handleFeeds(feedGlobal, true);
         var ele = jQuery("#random").eq(0);
@@ -152,20 +176,24 @@ jQuery.browser = {};
     function download() {
       window.open(currentBg.image);
     }
-    
+
     function bindEvents() {
       bindRefreshEvent();
       bindDownloadEvent();
       bindForceReload();
+      bindSorting();
     }
-    
+
     function forceReload(){
-      jQuery.getFeed({
-          url: rssURL,
-          success: onSuccess
-      });
+      getFeed()
       bindEvents();
       console.log("Feeds force-reloaded.");
+    }
+
+    function updateSorting(e) {
+      SortingStorage.set(jQuery("#sorting").val());
+      getFeed(); // Reload feed after sorting parameter change
+      console.log("Soring parameter changed.");
     }
 
     function bindRefreshEvent(){
@@ -181,7 +209,7 @@ jQuery.browser = {};
         download
       )
     }
-    
+
     function bindForceReload(){
       jQuery("#force-reload").bind(
         "click",
@@ -189,16 +217,21 @@ jQuery.browser = {};
       )
     }
 
+    function bindSorting() {
+      jQuery("#sorting").bind(
+        "change",
+        updateSorting
+      )
+    }
+
     function init(){
       if (!Store.isNotExpired()){
-        jQuery.getFeed({
-            url: rssURL,
-            success: onSuccess
-        });
+        getFeed()
       }else{
         feedGlobal = Store.load();
         handleFeeds(feedGlobal, false);
       }
+      jQuery("#sorting").val(SortingStorage.get());
       bindEvents();
     }
 

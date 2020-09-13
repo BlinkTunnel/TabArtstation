@@ -74,7 +74,10 @@ footer > .info-wrapper > .description{
 {
   float: right;
   min-width: 8%;
-  max-width: 10%;
+  max-width: 15%;
+}
+#btn-right select {
+  padding: .5em 1.4em .5em .8em;
 }
 #btn-right i{
   padding-right: 20px;
