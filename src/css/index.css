@@ -111,3 +111,119 @@ h4{
 {
   cursor: pointer;
 }
+html,body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.clear-fix {
+  clear: both;
+}
+
+.wrapper{
+  height: 100%;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  display:table;
+}
+
+.wallpaper-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 5px;
+  padding-left: 5px;
+  width: 100%;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+.wallpaper{
+  width: 100%;
+}
+
+footer{
+  position: fixed;
+  bottom: 20px;
+  text-shadow: 2px 2px black;
+  transition: opacity .15s linear .1s;
+  width: 100%;
+  opacity: 0;
+}
+footer:hover{
+  opacity: 1;
+}
+footer > .icon-wrapper {
+  float: left;
+  margin-right: 1em;
+}
+footer > .icon-wrapper >i{
+  width: 1.4em;
+  height: 1.4em;
+  margin-top: 6px;
+  margin-left: 1em;
+  box-shadow: 2px 2px black;
+}
+
+footer > .info-wrapper {
+  float: left;
+  color: lightgray;
+  max-width: 80%;
+}
+footer > .info-wrapper > .description{
+  max-width: 80%;
+}
+
+#btn-right
+{
+  float: right;
+  min-width: 8%;
+  max-width: 15%;
+}
+#btn-right select {
+  padding: .5em 1.4em .5em .8em;
+}
+#btn-right i{
+  padding-right: 20px;
+  min-width: 32px;
+  min-height: 24px;
+}
+
+h1,
+h3,
+h4{
+  margin-top: 0;
+  line-height: 1em;
+  font-weight: normal;
+  margin-bottom: 6px;
+  height: 1.15em;
+  overflow: hidden;
+}
+
+/* icon transition */
+#random{
+  cursor: pointer;
+  transition: transform 1s ease-in-out;
+}
+#random.active{
+  transform: rotate(360deg);
+}
+
+.save-wrapper,
+#force-reload,
+#btn-right
+{
+  cursor: pointer;
+}
+/* hover-wrapper-view-footer */
+footer{opacity:0;}
+.wrapper:hover + footer{opacity:1;}
