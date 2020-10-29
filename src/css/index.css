@@ -1,11 +1,22 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+}
 html,
 body {
     height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: black;
 }
-
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.8;
+    background: #000;
+    color: #bbb;
+    letter-spacing: .015em;
+}
 a {
     text-decoration: none;
     color: inherit;
@@ -44,16 +55,16 @@ a {
 }
 footer {
     position: fixed;
-    bottom: 0;
-    text-shadow: 2px 2px black;
-    opacity: 0;
-    transition: opacity .15s linear .1s;
-    background: #000;
-    max-width: 26%;
+    top: 0;
     right: 0;
-    padding: 12px;
+    opacity: 0;
     height: auto;
-    font-size: 10px !important;
+    background: #222;
+    transition: opacity .15s linear .1s;
+    padding: 12.5px;
+    max-width: 30.5vw;
+    min-width: 365px;
+    z-index: 2;
 }
 footer:hover {
     opacity: 1;
@@ -67,15 +78,13 @@ footer > .icon-wrapper {
 footer > .icon-wrapper > i {
     width: 1.4em;
     height: 1.4em;
-    box-shadow: 2px 2px black;
     margin: 0 1em .5em 0;
 }
 footer > .info-wrapper {
     float: left;
-    color: white;
-    max-width: 100%;
-    font-family: sans-serif;
+    font-family: inherit;
     padding-bottom: 10px;
+    max-width: 90%;
 }
 footer > .info-wrapper > .description {
     max-width: 80%;
@@ -86,22 +95,27 @@ footer > .info-wrapper > .description {
     max-width: 100%;
 }
 #btn-right select {
-    padding: .5em 1.4em .5em .8em;
-    margin-left: 1em;
+    padding: .5em 1.4em .5em .5em;
+    display: inline-block;
+    margin-left: 2em;
+    width: auto;
+    max-width: 65%;
 }
 #btn-right i {
-    padding-right: 20px;
     min-width: 32px;
     min-height: 24px;
 }
 
 h1,
+h2,
 h3,
-h4 {
-    margin-top: 0;
-    line-height: 1em;
-    margin-bottom: 10px;
-    height: auto;
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #f1f1f1;
     overflow: visible;
 }
 /* icon transition */
@@ -124,26 +138,42 @@ h4 {
 #force-reload {
     float: right;
 }
+
 /* hover-wrapper-view-footer */
 .wrapper:hover + footer {
     opacity: 1;
 }
+
+/* Place all common styles here */
+.title,
+.description,
+.link-desc {
+    width: 95%;
+    display: block;
+    font-weight: normal;
+}
+.description,
+.link-desc {
+    letter-spacing: .015em;
+    margin-bottom: .5em;
+    line-height: 1.1;
+    text-shadow: 0 0 0;
+}
 /* footer text styles */
 .title {
-    font-size: 14px;
     font-weight: bold;
-    max-width: 90%;
+    color: #f1f1f1;
+    font-size: 24px;
+    margin-bottom: .5em;
+    letter-spacing: -.5px;
 }
 .description {
-    font-size: 1em;
-    font-weight: normal;
-    letter-spacing: .01em;
-    font-style: italic;
-    text-shadow: 0 0 0;
-    color: #f4f4f4;
-    max-width: 80%;
-    line-height: 1.1;
+    font-size: 15px;
+    word-break: break-word;
+    color: #bbb;
 }
 .link-desc {
-    color: #6cc8ff;
+    font-size: 14px;
+    color: #13aff0;
+    margin-top: 4px;
 }
