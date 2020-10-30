@@ -1,113 +1,179 @@
-html,body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: black;
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
 }
-
-a{
-  text-decoration: none;
-  color: inherit;
+html,
+body {
+    height: 100%;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.8;
+    background: #000;
+    color: #bbb;
+    letter-spacing: .015em;
+}
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .clear-fix {
-  clear: both;
+    clear: both;
 }
 
-.wrapper{
-  height: 100%;
+.wrapper {
+    height: 100%;
 }
 
 .background {
-  width: 100%;
-  height: 100%;
-  display:table;
+    width: 100%;
+    height: 100%;
+    display: table;
 }
 
 .wallpaper-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  padding-right: 5px;
-  padding-left: 5px;
-  width: 100%;
-  height: 100%;
-  display: table-cell;
-  vertical-align: middle;
-}
-.wallpaper{
-  width: 100%;
-}
+    display: table-cell;
 
-footer{
-  position: fixed;
-  bottom: 20px;
-  text-shadow: 2px 2px black;
-  opacity: .7;
-  transition: opacity .15s linear .1s;
-  width: 100%;
+    /* Issue: Margin-left and Margin-right... */
+    /* ...can't be used with display: table-cell */
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-right: 5px;
+    padding-left: 5px;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
 }
-footer:hover{
-  opacity: 1;
+.wallpaper {
+    width: 100%;
+}
+footer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    height: auto;
+    background: #222;
+    transition: opacity .15s linear .1s;
+    padding: 12.5px;
+    max-width: 30.5vw;
+    min-width: 365px;
+    z-index: 2;
+}
+footer:hover {
+    opacity: 1;
 }
 footer > .icon-wrapper {
-  float: left;
-  margin-right: 1em;
+    position: absolute;
+    top: 12px;
+    right: 3px;
+    font-size: 1.2em;
 }
-footer > .icon-wrapper >i{
-  width: 1.4em;
-  height: 1.4em;
-  margin-top: 6px;
-  margin-left: 1em;
-  box-shadow: 2px 2px black;
+footer > .icon-wrapper > i {
+    width: 1.4em;
+    height: 1.4em;
+    margin: 0 1em .5em 0;
 }
-
 footer > .info-wrapper {
-  float: left;
-  color: lightgray;
-  max-width: 80%;
+    float: left;
+    font-family: inherit;
+    padding-bottom: 10px;
+    max-width: 90%;
 }
-footer > .info-wrapper > .description{
-  max-width: 80%;
+footer > .info-wrapper > .description {
+    max-width: 80%;
 }
 
-#btn-right
-{
-  float: right;
-  min-width: 8%;
-  max-width: 15%;
+#btn-right {
+    min-width: 45%;
+    max-width: 100%;
 }
 #btn-right select {
-  padding: .5em 1.4em .5em .8em;
+    padding: .5em 1.4em .5em .5em;
+    display: inline-block;
+    margin-left: 2em;
+    width: auto;
+    max-width: 65%;
 }
-#btn-right i{
-  padding-right: 20px;
-  min-width: 32px;
-  min-height: 24px;
+#btn-right i {
+    min-width: 32px;
+    min-height: 24px;
 }
 
 h1,
+h2,
 h3,
-h4{
-  margin-top: 0;
-  line-height: 1em;
-  font-weight: normal;
-  margin-bottom: 6px;
-  height: 1.15em;
-  overflow: hidden;
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #f1f1f1;
+    overflow: visible;
 }
-
 /* icon transition */
-#random{
-  cursor: pointer;
-  transition: transform 1s ease-in-out;
+#random {
+    transition: none;
+    cursor: pointer;
 }
-#random.active{
-  transform: rotate(360deg);
+#random.active {
+    transition: transform 1s ease;
+    transform: rotate(360deg);
 }
-
 .save-wrapper,
 #force-reload,
-#btn-right
-{
-  cursor: pointer;
+#btn-right {
+    cursor: pointer;
+}
+#save {
+    float: left;
+}
+#force-reload {
+    float: right;
+}
+
+/* hover-wrapper-view-footer */
+.wrapper:hover + footer {
+    opacity: 1;
+}
+
+/* Place all common styles here */
+.title,
+.description,
+.link-desc {
+    width: 95%;
+    display: block;
+    font-weight: normal;
+}
+.description,
+.link-desc {
+    letter-spacing: .015em;
+    margin-bottom: .5em;
+    line-height: 1.1;
+    text-shadow: 0 0 0;
+}
+/* footer text styles */
+.title {
+    font-weight: bold;
+    color: #f1f1f1;
+    font-size: 24px;
+    margin-bottom: .5em;
+    letter-spacing: -.5px;
+}
+.description {
+    font-size: 15px;
+    word-break: break-word;
+    color: #bbb;
+}
+.link-desc {
+    font-size: 14px;
+    color: #13aff0;
+    margin-top: 4px;
 }
