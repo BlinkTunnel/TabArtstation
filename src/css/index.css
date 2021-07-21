@@ -50,8 +50,11 @@ a {
     height: 100%;
     vertical-align: middle;
 }
+/* Use the full height of the new tab, instead of out of full image size, out of frame. */
 .wallpaper {
-    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: block;
 }
 footer {
     position: fixed;
