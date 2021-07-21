@@ -50,7 +50,7 @@ a {
     height: 100%;
     vertical-align: middle;
 }
-/* Use the full height of the new tab, instead of out of full image size, out of frame. */
+/* Use the full height of the new tab, instead of always using the full image size, which can appear out of frame.*/
 .wallpaper {
     height: 100vh;
     margin: 0 auto;
